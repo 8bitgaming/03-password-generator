@@ -11,7 +11,7 @@ This website allows a user to generate a random password based on parameters set
 ## Website
 https://8bitgaming.github.io/03-password-generator/
 
-![screenshot of the password generator with a password](.assets/images/screenshot.PNG?raw=true)
+![screenshot of the password generator with a password](./assets/images/screenshot.PNG?raw=true)
 
 
 ## 1.0 Version Changelog
