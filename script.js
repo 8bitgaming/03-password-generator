@@ -5,7 +5,7 @@ const upperCharacters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", 
 const specialCharacters = ["!","$", "%", "?", "*", "@"]
 const numbersList = ["0", "1","2","3","4","5","6","7","8","9"]
 let approvedList = []
-let password = ''
+let globalPassword = ''
 
 
 //establish desired length of password
@@ -24,7 +24,7 @@ const arrayBuilder = (type, array) => {
     case "yes":
     case "y":
       //adding at least one of the character type selected
-      password = password + array[randomNum(array.length)]
+      globalPassword = globalPassword + array[randomNum(array.length)]
       //creating the list of all potential characters
       approvedList = approvedList.concat(array)
       break;
@@ -62,16 +62,16 @@ const generatePassword = () => {
   //confirm approved list is not empty - if empty - alert and restart
  if (approvedList.length > 0) {
   //generate string based on input values
-     for (let i = password.length; i < pwLength; i++){
+     for (let i = globalPassword.length; i < pwLength; i++){
     //select random from approvedList array
-    password = password + approvedList[randomNum(approvedList.length)]
+    globalPassword = globalPassword + approvedList[randomNum(approvedList.length)]
   }
 } else {
   window.alert("You need to select at least one character type!")
   generatePassword()
 }
   
-  return password
+  return globalPassword
 }
 
 // Get references to the #generate element
@@ -81,8 +81,10 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
+
+  //clear password so another can be generated without refreshing the page
+  globalPassword = ''
 
 }
 

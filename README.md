@@ -14,8 +14,11 @@ https://8bitgaming.github.io/03-password-generator/
 ![screenshot of the password generator with a password](./assets/images/screenshot.PNG?raw=true)
 
 
-## 1.0 Version Changelog
-* Initial version using window prompts
+## Instructions
+* Click "Generate Password" to start selecting the password criteria
+* Specify how long the password should be from 8 to 128 characters
+* Answer each prompt Yes or No, making sure to pick at least one character type
+* Your password will be generated after all the prompts are answered.
 
 ## Contribution
 Made with ❤️ by Jeremy
