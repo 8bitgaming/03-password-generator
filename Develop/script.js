@@ -5,7 +5,10 @@ const upperCharacters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", 
 const specialCharacters = ["!","$", "%", "?", "*", "@"]
 const numbersList = ["0", "1","2","3","4","5","6","7","8","9"]
 let approvedList = []
+let password = ''
 
+
+//establish desired length of password
 const length = () => {
   let userInput = 0
   while (userInput < 8 || userInput > 128 ) {
@@ -14,12 +17,15 @@ const length = () => {
   return userInput
 }
 
+//confirm numbers are part of password
 const numbers = () => {
   let userInput = window.prompt("Yes/No - include numbers?").toLowerCase()
-
   switch (userInput) {
     case "yes":
     case "y":
+      //adding at least one random number
+      password = password + numbersList[randomNum(numbersList.length)]
+      //creating the list of all potential characters
       approvedList = approvedList.concat(numbersList)
       break;
     case "no":
@@ -29,36 +35,71 @@ const numbers = () => {
       window.alert("Enter \"Yes\" or \"No\".")
       numbers()
   }
-
-  // if (userInput === "yes" || userInput === "y" ) {
-  //   approvedList = approvedList.concat(numbersList)
-  //   return
-  // } else if 
-  // (userInput === "no" || userInput === "n") { 
-  //   return
-  // } else { 
-  //   window.alert("Enter \"Yes\" or \"No\".")
-  //   numbers()
-  // }
 }
 
+//confirm lower case letters are included
 const lowerCase = () => {
   let userInput = window.prompt("Yes/No - include lower case letters?").toLowerCase()
-  if (userInput === "yes" || userInput === "y") {
-    return true
-  } else if 
-  (userInput === "no" || userInput === "n") { 
-    return false
-  } else { 
-    window.alert("Enter \"Yes\" or \"No\".")
-    lowerCase()
+  switch (userInput) {
+    case "yes":
+    case "y":
+      //adding at least one random lower case letter
+      password = password + lowerCharacters[randomNum(lowerCharacters.length)]
+      //creating the list of all potential characters
+      approvedList = approvedList.concat(lowerCharacters)
+      break;
+    case "no":
+    case "n":
+      break;
+    default:
+      window.alert("Enter \"Yes\" or \"No\".")
+      lowerCase()
   }
 }
 
-//utility function to generate random number between 0-9
+// confirm upper case letters are included
+const upperCase = () => {
+  let userInput = window.prompt("Yes/No - include upper case letters?").toLowerCase()
+  switch (userInput) {
+    case "yes":
+    case "y":
+      //adding at least one random upper case letter
+      password = password + upperCharacters[randomNum(upperCharacters.length)]
+      //creating the list of all potential characters
+      approvedList = approvedList.concat(upperCharacters)
+      break;
+    case "no":
+    case "n":
+      break;
+    default:
+      window.alert("Enter \"Yes\" or \"No\".")
+      upperCase()
+  }
+}
 
-const randomNum = () => {
-  return Math.floor(Math.random() * 10)
+//confirm special characters are included
+const special = () => {
+  let userInput = window.prompt("Yes/No - include special characters?").toLowerCase()
+  switch (userInput) {
+    case "yes":
+    case "y":
+      //adding at least one random special character
+      password = password + specialCharacters[randomNum(specialCharacters.length)]
+      //creating the list of all potential characters
+      approvedList = approvedList.concat(specialCharacters)
+      break;
+    case "no":
+    case "n":
+      break;
+    default:
+      window.alert("Enter \"Yes\" or \"No\".")
+      special()
+  }
+}
+
+//utility function to generate random numbers
+const randomNum = (num) => {
+  return Math.floor(Math.random() * num)
 }
 
 const generatePassword = () => {
@@ -72,17 +113,24 @@ const generatePassword = () => {
   console.log(approvedList)
 
   //include lower case?
-  const pwLowerCase = lowerCase()
-  
+  lowerCase()
+  console.log(approvedList)
+
+  //include upper case?
+  upperCase()
+  console.log(approvedList)
+
   //include special characters?
+  special()
+  console.log(approvedList)
 
   //check if approvedList array is empty - if yes alert and restart
 
   //generate string based on input values
-  let password = ''
-   for (let i = 0; i < pwLength; i++){
+  
+   for (let i = password.length; i < pwLength; i++){
     //select random from approvedList array
-    //how to make sure get at least one of each?
+    password = password + approvedList[randomNum(approvedList.length)]
   }
   
   return password
