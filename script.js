@@ -17,83 +17,23 @@ const length = () => {
   return userInput
 }
 
-//confirm numbers are part of password
-const numbers = () => {
-  let userInput = window.prompt("Yes/No - include numbers?").toLowerCase()
+//build the array with selected character type and add at least of of that character to the password string
+const arrayBuilder = (type, array) => {
+  let userInput = window.prompt(`Yes/No - include ${type}?`).toLowerCase()
   switch (userInput) {
     case "yes":
     case "y":
-      //adding at least one random number
-      password = password + numbersList[randomNum(numbersList.length)]
+      //adding at least one of the character type selected
+      password = password + array[randomNum(array.length)]
       //creating the list of all potential characters
-      approvedList = approvedList.concat(numbersList)
+      approvedList = approvedList.concat(array)
       break;
     case "no":
     case "n":
       break;
     default:
       window.alert("Enter \"Yes\" or \"No\".")
-      numbers()
-  }
-}
-
-//confirm lower case letters are included
-const lowerCase = () => {
-  let userInput = window.prompt("Yes/No - include lower case letters?").toLowerCase()
-  switch (userInput) {
-    case "yes":
-    case "y":
-      //adding at least one random lower case letter
-      password = password + lowerCharacters[randomNum(lowerCharacters.length)]
-      //creating the list of all potential characters
-      approvedList = approvedList.concat(lowerCharacters)
-      break;
-    case "no":
-    case "n":
-      break;
-    default:
-      window.alert("Enter \"Yes\" or \"No\".")
-      lowerCase()
-  }
-}
-
-// confirm upper case letters are included
-const upperCase = () => {
-  let userInput = window.prompt("Yes/No - include upper case letters?").toLowerCase()
-  switch (userInput) {
-    case "yes":
-    case "y":
-      //adding at least one random upper case letter
-      password = password + upperCharacters[randomNum(upperCharacters.length)]
-      //creating the list of all potential characters
-      approvedList = approvedList.concat(upperCharacters)
-      break;
-    case "no":
-    case "n":
-      break;
-    default:
-      window.alert("Enter \"Yes\" or \"No\".")
-      upperCase()
-  }
-}
-
-//confirm special characters are included
-const special = () => {
-  let userInput = window.prompt("Yes/No - include special characters?").toLowerCase()
-  switch (userInput) {
-    case "yes":
-    case "y":
-      //adding at least one random special character
-      password = password + specialCharacters[randomNum(specialCharacters.length)]
-      //creating the list of all potential characters
-      approvedList = approvedList.concat(specialCharacters)
-      break;
-    case "no":
-    case "n":
-      break;
-    default:
-      window.alert("Enter \"Yes\" or \"No\".")
-      special()
+      arrayBuilder(type, array)
   }
 }
 
@@ -106,20 +46,20 @@ const generatePassword = () => {
   
   //get password length
   const pwLength = length()
-   
-  //include numbers?
-  numbers()
- 
+  
   //include lower case?
-  lowerCase()
+  arrayBuilder("lower case characters", lowerCharacters)
  
   //include upper case?
-  upperCase()
+  arrayBuilder("upper case characters", upperCharacters)
  
-  //include special characters?
-  special()
+  //include numbers?
+  arrayBuilder("numbers", numbersList)
 
-  //confirm approved list is not empty - if empty alert and restart
+  //include special characters?
+  arrayBuilder("special characters", specialCharacters)
+
+  //confirm approved list is not empty - if empty - alert and restart
  if (approvedList.length > 0) {
   //generate string based on input values
      for (let i = password.length; i < pwLength; i++){
