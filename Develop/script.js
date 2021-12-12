@@ -106,32 +106,30 @@ const generatePassword = () => {
   
   //get password length
   const pwLength = length()
-  console.log(pwLength)
- 
+   
   //include numbers?
   numbers()
-  console.log(approvedList)
-
+ 
   //include lower case?
   lowerCase()
-  console.log(approvedList)
-
+ 
   //include upper case?
   upperCase()
-  console.log(approvedList)
-
+ 
   //include special characters?
   special()
-  console.log(approvedList)
 
-  //check if approvedList array is empty - if yes alert and restart
-
+  //confirm approved list is not empty - if empty alert and restart
+ if (approvedList.length > 0) {
   //generate string based on input values
-  
-   for (let i = password.length; i < pwLength; i++){
+     for (let i = password.length; i < pwLength; i++){
     //select random from approvedList array
     password = password + approvedList[randomNum(approvedList.length)]
   }
+} else {
+  window.alert("You need to select at least one character type!")
+  generatePassword()
+}
   
   return password
 }
