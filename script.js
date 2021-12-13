@@ -83,8 +83,12 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 
-  //clear password so another can be generated without refreshing the page
+  //clear password and array so another can be generated without refreshing the page
   globalPassword = ''
+  approvedList = []
+  // while (approvedList.length) { 
+  //   approvedList.pop(); 
+// }
 
 }
 
