@@ -86,10 +86,6 @@ function writePassword() {
   //clear password and array so another can be generated without refreshing the page
   globalPassword = ''
   approvedList = []
-  // while (approvedList.length) { 
-  //   approvedList.pop(); 
-// }
-
 }
 
 // Add event listener to generate button
